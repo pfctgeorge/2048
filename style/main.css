@@ -342,9 +342,13 @@ hr {
   .tile.tile-2048 .tile-inner {
     background-image: url('../i/2048.gif')}
   .tile.tile-super .tile-inner {
-    color: #f9f6f2;
-    background: #3c3a32;
-    font-size: 30px; }
+    color: rgb(255,230,230);
+    color: rgba(255,230,230,0.9);
+    text-shadow: 0 0 3px rgba(255,230,230,0.9);
+    background-image: url('../i/super.gif');
+    font-size: 20px;
+    text-align: center;
+    line-height: 100%; }
     @media screen and (max-width: 520px) {
       .tile.tile-super .tile-inner {
         font-size: 10px; } }
@@ -675,5 +679,5 @@ hr {
   display: none;
    url('../i/2.gif') url('../i/4.gif') url('../i/8.gif') url('../i/16.gif')
    url('../i/32.gif') url('../i/64.gif') url('../i/128.gif') url('../i/256.gif')
-   url('../i/512.gif') url('../i/1024.gif') url('../i/2048.gif')
+   url('../i/512.gif') url('../i/1024.gif') url('../i/2048.gif') url('../i/super.gif')
   }
