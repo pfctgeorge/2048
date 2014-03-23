@@ -3,7 +3,7 @@ html, body {
   color: #333333;
 }
 .score-container, .best-container, .game-container .game-message a, a.style-button, .score-container:after, .best-container:after {
-  background: #ffd0d0;
+  background: #eecccc;
   color: #333333;
 }
 .game-container .game-message.game-won {
@@ -14,7 +14,7 @@ html, body {
   background: rgba(228, 228, 228, 0.65); 
 }  
 .game-container {
-  background: #ffbbbb;
+  background: #eeaaaa;
 }
 @media screen and (max-width: 520px) {
   .game-container .game-message a {
