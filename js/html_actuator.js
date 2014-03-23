@@ -131,7 +131,7 @@ HTMLActuator.prototype.updateBestScore = function (bestScore) {
 
 HTMLActuator.prototype.message = function (won) {
   var type    = won ? "game-won" : "game-over";
-  var message = won ? "You win! ⊂（＿＾ω＾）⊃" : "Game over!";
+  var message = won ? currentStrings["You win!"] : currentStrings["Game over!"];
 
   if (typeof ga !== "undefined") {
     ga("send", "event", "game", "end", type, this.score);
@@ -156,12 +156,12 @@ HTMLActuator.prototype.scoreTweetButton = function () {
   tweet.classList.add("twitter-share-button");
   tweet.setAttribute("href", "https://twitter.com/share");
   tweet.setAttribute("data-via", "marumichannel");
-  tweet.setAttribute("data-url", "http://marumichannel.github.io/2048/");
-  tweet.setAttribute("data-counturl", "http://marumichannel.github.io/2048/");
+  tweet.setAttribute("data-url", currentStrings["http://marumichannel.github.io/2048/"]);
+  tweet.setAttribute("data-counturl", currentStrings["http://marumichannel.github.io/2048/"]);
   tweet.textContent = "Tweet";
 
-  var text = "I scored " + this.score + " points at 井口 2048, a game where you " +
-             "join 井口 to score high! #井口2048";
+  var text = "I scored " + this.score + " points at " + currentStrings["2048"] + ", a game where " +
+             currentStrings["you join tiles to score high!"] + " #井口2048";
   tweet.setAttribute("data-text", text);
 
   return tweet;
