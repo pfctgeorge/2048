@@ -1,7 +1,10 @@
 var currentStrings
-var styleDictionary = {
-    yukachi: {
+var stringDictionary = { strings: [
+    {
+        "id": "yukachi",
         "2048": "井口 2048",
+        "Title": "井口",
+        "Subtitle": "(Iguchi Yuka)",
         "Join the numbers and get to the 2048 tile!": "Join the 井口 and get the 井口 2048 tile!",
         "When two tiles with the same number touch": "When two tiles with the same 井口 touch, they merge into one!",
         "you join tiles to score high!": "you join 井口 to score high!",
@@ -9,8 +12,11 @@ var styleDictionary = {
         "Game over!": "Game over!",
         "http://marumichannel.github.io/2048/": "http://marumichannel.github.io/2048/#yukachi"
     },
-    rieshon: {
+    {
+        "id": "rieshon",
         "2048": "りえしょん 2048",
+        "Title": "りえしょん",
+        "Subtitle": "(Murakawa Rie)",
         "Join the numbers and get to the 2048 tile!": "Join the りえしょん and get the りえしょん 2048 tile!",
         "When two tiles with the same number touch": "When two tiles with the same りえしょん touch",
         "you join tiles to score high!": "you join りえしょん to score high!",
@@ -18,8 +24,11 @@ var styleDictionary = {
         "Game over!": "Game over!",
         "http://marumichannel.github.io/2048/": "http://marumichannel.github.io/2048/#rieshon"
     },
-    ayaneru: {
+    {
+        "id": "ayaneru",
         "2048": "あやねる 2048",
+        "Title": "あやねる",
+        "Subtitle": "(Sakura Ayane)",
         "Join the numbers and get to the 2048 tile!": "Join the あやねる and get the あやねる 2048 tile!",
         "When two tiles with the same number touch": "When two tiles with the same あやねる touch",
         "you join tiles to score high!": "you join あやねる to score high!",
@@ -27,8 +36,11 @@ var styleDictionary = {
         "Game over!": "Game over!",
         "http://marumichannel.github.io/2048/": "http://marumichannel.github.io/2048/#ayaneru"
     },
-    ucchii: {
+    {
+        "id": "ucchii",
         "2048": "うっちー 2048",
+        "Title": "うっちー",
+        "Subtitle": "(Uchida Aya)",
         "Join the numbers and get to the 2048 tile!": "Join the うっちー and get the うっちー 2048 tile!",
         "When two tiles with the same number touch": "When two tiles with the same うっちー touch",
         "you join tiles to score high!": "you join うっちー score high!",
@@ -36,8 +48,11 @@ var styleDictionary = {
         "Game over!": "Game over!",
         "http://marumichannel.github.io/2048/": "http://marumichannel.github.io/2048/#ucchii"
     },
-    sugar: {
+    {
+        "id": "sugar",
         "2048": "しゅがぁ 2048",
+        "Title": "しゅがぁ",
+        "Subtitle": "(Satou Satomi)",
         "Join the numbers and get to the 2048 tile!": "Join the しゅがぁ and get the しゅがぁ 2048 tile!",
         "When two tiles with the same number touch": "When two tiles with the same しゅがぁ touch",
         "you join tiles to score high!": "you join しゅがぁ to score high!",
@@ -45,11 +60,15 @@ var styleDictionary = {
         "Game over!": "Game over!",
         "http://marumichannel.github.io/2048/": "http://marumichannel.github.io/2048/#sugar"
     }
-}
+]}
 
 function getStrings(style) {
-    var strings = styleDictionary[style];
-    return strings
+    for (var index = 0; index < stringDictionary.strings.length; index++) {
+        if (style == stringDictionary.strings[index].id) {
+            return stringDictionary.strings[index]
+        }
+    }
+    return undefined
 }
 
 function changeStrings(str) {
@@ -77,7 +96,7 @@ function tweetButton() {
     return tweet;
 }
 
-function updateStyle(style) {
+function initStyle(style) {
     currentStrings = getStrings(style);
     changeStrings(currentStrings);
     document.querySelector("#theme").href = 'style/' + style + '.css';
@@ -91,8 +110,34 @@ function changeStyle(style) {
     location.reload();
 }
 
-if (typeof styleDictionary[location.hash.replace("#", "")] != "undefined") {
-    updateStyle(location.hash.replace("#", ""))
-} else {
-    changeStyle("yukachi")
+function buildButton(strings)
+{
+  var button = document.createElement("a")
+  button.innerHTML = "<strong>" + strings["Title"] + "</strong><br>" +
+    strings["Subtitle"]
+  button.setAttribute("onclick","changeStyle('" + strings["id"] + "')")
+  button.setAttribute("type","button")
+  button.setAttribute("class","style-button")
+  return button
 }
+
+function createButtons(stringDictionary) {
+    var switcherContainer = document.querySelector(".style-switcher")
+    if (stringDictionary.strings.length > 1) {
+        for (var index = 0; index < stringDictionary.strings.length; index++) {
+          var strings = stringDictionary.strings[index]
+          var button = buildButton(strings)
+          switcherContainer.firstElementChild.appendChild(button)
+        }
+    } else {
+        switcherContainer.parentElement.removeChild(switcherContainer)
+    }
+}
+
+if (typeof getStrings(location.hash.replace("#", "")) != "undefined") {
+    initStyle(location.hash.replace("#", ""))
+    createButtons(stringDictionary);
+} else {
+    changeStyle(stringDictionary.strings[0].id)
+};
+
