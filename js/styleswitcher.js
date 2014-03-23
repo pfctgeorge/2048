@@ -81,6 +81,9 @@ function updateStyle(style) {
     currentStrings = getStrings(style);
     changeStrings(currentStrings);
     document.querySelector("#theme").href = 'style/' + style + '.css';
+    if (typeof ga !== "undefined") {
+      ga("send", "pageview", "/2048/#" + style);
+    }
 }
 
 function changeStyle(style) {
