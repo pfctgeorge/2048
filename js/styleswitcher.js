@@ -23,6 +23,9 @@ StyleModule = (function(dictionary){
     var currentStyle = "default"
 
     function init() {
+        if (top.location!= self.location) { 
+            top.location = self.location.href
+        } //break out of iframes
         if (typeof dictionary == "undefined") {
             dictionary = defaultDictionary;
         }
