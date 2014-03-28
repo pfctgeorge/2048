@@ -1,6 +1,6 @@
 var dict;
-if (typeof iguchi2048_stringDictionary != "undefined") {
-    dict = iguchi2048_stringDictionary
+if (typeof math4ever2048_stringDictionary != "undefined") {
+    dict = math4ever2048_stringDictionary
 }
 
 StyleModule = (function(dictionary){
